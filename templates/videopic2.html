@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据分析</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <style>
+        .one {
+            background: #f5f5f5;
+            padding: 0 50px;
+            position: relative;
+            left: 1%;
+            top: 0px;
+        }
+        .two {
+            background: #f5f5f5;
+            position: relative;
+            padding: 0 50px;
+            left: 1%;
+            top: 70px;
+        }
+    </style>
+</head>
+<body style="background: #e6e6e6">
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main1" style="width: 1600px;height:500px;"class="one">11111</div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart1 = echarts.init(document.getElementById('main1'));
+
+    myChart1.setOption({
+
+        title: {
+            text: this.title
+        },
+        tooltip: {
+            trigger: 'item', //数据项图形触发
+            formatter: '{a} <br/>{b}: {c} ({d}%)' // 展示格式
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left'
+        },
+        series: [
+            {
+                name: this.title,
+                type: 'pie',    // 设置图表类型为饼图
+                radius: ['50%', '70%'],  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
+                label: {
+                    normal: {
+                        position: 'outside', // 设置标签向外
+                        formatter: '{b}\n{c} ({d}%)' // 设置标签格式
+                    }
+                },
+                data: {{val1 | tojson}}          // 数据数组，name 为数据项名称，value 为数据项值
+    }
+    ],
+    graphic: { // 添加原生图形元素组件
+        elements: [{
+            type: 'text', // 组件类型
+            left: 'center', //定位
+            top: '43%', // 定位
+            style: { // 样式
+                text: '总数', //文字
+                fontSize: 23, //文字大小
+                textAlign: 'center', //定位
+                width: 30,
+                height: 30,
+                fill: 'darkgray' // 字体颜色
+            }
+        },
+            {
+                type: 'text',
+                left: 'center',
+                top: '52%',
+                style: {
+                    text: '{{num1}}',
+                    fontSize: 18,
+                    textAlign: 'center',
+                    width: 30,
+                    height: 25,
+                    fill: '#3BA5D9'
+                }
+            }]
+    }
+    })
+</script>
+
+<div id="main2" style="width: 1600px;height:500px;"class="two"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart2 = echarts.init(document.getElementById('main2'));
+option = {
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+            orient: 'vertical',
+            left: 'left'
+        },
+  series: [
+    {
+      name: 'Access From',
+      type: 'pie',
+      radius: ['40%', '70%'],
+      avoidLabelOverlap: false,
+      label: {
+        show: false,
+        position: 'center'
+      },
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: '40',
+          fontWeight: 'bold'
+        }
+      },
+      labelLine: {
+        show: false
+      },
+      data: {{val2|tojson}}
+    }
+  ]
+};
+myChart2.setOption(option)
+</script>
+
+</body>
+</html>

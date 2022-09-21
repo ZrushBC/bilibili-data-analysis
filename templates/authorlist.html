@@ -1,0 +1,51 @@
+<!-- 引入 layui.css -->
+<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
+<!-- 引入 layui.js -->
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<html>
+<head><meta name="referrer" content="no-referrer"></head>
+<body>
+<!--从对象中取值-->
+<form class="layui-form" action="/authorlist" method="post" style="margin: 20px;text-align: center">
+    <input  class="layui-input" style="width: 40%;display: inline-block;" name="keyword" placeholder="请输入UP主昵称关键词" value="{{keyword}}">
+    <button class="layui-btn layui-btn-radius layui-btn-normal"><i class="layui-icon layui-icon-search"></i>点我搜索</button>
+</form>
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>UP主uid</th>
+        <th>UP主昵称</th>
+        <th>UP主性别</th>
+        <th>UP主头像</th>
+        <th>UP主签名</th>
+        <th>UP主关注数</th>
+        <th>UP主粉丝数</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for w in data %}
+    <tr>
+        <td>{{w[0]}}</td>
+        <td>{{w[1]}}</td>
+        <td>{{w[2]}}</td>
+        <td><img src="{{w[3]}}"></td>
+        <td>{{w[4]}}</td>
+        <td>{{w[5]}}</td>
+        <td>{{w[6]}}</td>
+        <td><a href="https://space.bilibili.com/{{w[0]}}" class="layui-btn">
+            <i class="layui-icon layui-icon-delete">链接</i></a>
+<!--            <a href="studentDelete?id={{w[0]}}" class="layui-btn">-->
+<!--            <i class="layui-icon layui-icon-delete">添加</i></a>-->
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

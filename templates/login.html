@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//unpkg.com/layui@2.6.8/dist/layui.js"></script>
+    <link rel="stylesheet" href="//unpkg.com/layui@2.6.8/dist/css/layui.css">
+    <link rel="stylesheet" href="static/login&register.css">
+    <title>登录</title>
+</head>
+<body>
+{% include "nav.html" %}
+{% if msg %}
+<script src="layer.js"></script>
+<script>
+    layer.msg('{{msg}}');
+</script>
+{% endif %}
+<div class="container">
+
+    <div class="wrapper">
+        <div class="header1">Hello！</div>
+        <div class="header2">欢迎来到BilBil数据分析</div>
+        <div class="form-wrapper">
+            <form action="/admin" method="post">
+                <input type="text" name="username" placeholder="请输入用户名" required="required" class="input-item">
+                <input type="password" name="password" placeholder="请输入密码" required="required" class="input-item">
+                <button style="border: 0px" class="btn">登录</button>
+            </form>
+        </div>
+        <div class="msg">
+            Don't have account?
+            <a href="/register">注册</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

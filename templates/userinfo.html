@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .one{
+                background: #ffffff;
+    padding: 24px 12px;
+    width: calc(100% + 24px);
+            margin-top: 15px;
+    margin-left: -12px;
+    color: #000;
+        }
+        .two{
+            font-size: 20px;
+    color: rgba(0,0,0,.85);
+    font-weight: 600;
+    margin-bottom: 16px;
+        }
+        .three{
+            display: flex;
+    flex-wrap: wrap;
+        }
+        .four{
+                display: flex;
+    justify-content: space-between;
+    width: calc(100% - 90px);
+    flex-wrap: wrap;
+        }
+        .hello{
+                font-size: 20px;
+    color: rgba(0,0,0,.85);
+    display: flex;
+    align-items: flex-start;
+        }
+    </style>
+</head>
+<body style="background: #e6e6e6">
+<div class="one">
+    <div class="two">个人资料</div>
+    <div class="three">
+        <div style="text-align: center;"><img src="{{session['heading']}}" width="50px" height="50px"></div>
+        <div class="four"><p class="hello">hello! {{session['appellation']}}</p></div>
+    </div>
+</div>
+<div class="one">
+    <div>用户账号</div>
+    <div>{{session['username']}}</div>
+</div>
+<div class="one">
+    <div>用户密码</div>
+    <div><input type="password" name="password" value="{{session['password']}}" readonly="true"></div>
+</div>
+</body>
+</html>

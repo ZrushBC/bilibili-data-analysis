@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//unpkg.com/layui@2.6.8/dist/layui.js"></script>
+     <link rel="stylesheet" href="static/login&register.css">
+    <link rel="stylesheet" href="//unpkg.com/layui@2.6.8/dist/css/layui.css">
+    <title>注册</title>
+</head>
+<body>
+{% include "nav.html" %}
+  {% if msg %}
+<script src="layer.js"></script>
+<script>
+layer.msg('{{msg}}');
+</script>
+  {% endif %}
+<div class="container">
+    <div class="wrapper">
+        <div class="header1">Hello！</div>
+        <div class="header2">欢迎您成为BilBil数据分析的用户！</div>
+        <div class="form-wrapper">
+            <form action="/regSubmit" method="post">
+                <input type="text" name="appellation" placeholder="请输入昵称" required="required" class="input-item">
+                <input type="text" name="username" placeholder="请输入账号" required="required" class="input-item">
+                <input type="password" name="password1" placeholder="请输入密码" required="required" class="input-item">
+                <input type="password" name="password2" placeholder="请再次输入密码" required="required" class="input-item">
+                <button style="border: 0px" class="btn">注册</button>
+            </form>
+        </div>
+        <div class="msg">
+            already have account!
+            <a href="/login">去登录</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

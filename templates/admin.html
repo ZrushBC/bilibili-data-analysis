@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>BILBIL数据分析</title>
+    <!-- 引入 layui.css -->
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
+    <!-- 引入 layui.js -->
+    <script src="https://www.layuicdn.com/layui/layui.js"></script>
+</head>
+<body class="layui-layout-body">
+<!--判断用户是否登录过-->
+{% if session['username'] %}
+<!--已经登录-->
+{% else %}
+<!--没有登录-->
+<script>
+    alert("登录才可以进入后台");  //弹窗提示
+    window.location.href = "/login"; //跳转网址
+</script>
+{% endif %}
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">BILBIL数据分析</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item">
+                <a href="/index" target="_blank"><i class="layui-icon layui-icon-home"></i>首页</a>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="{{session['heading']}}" class="layui-nav-img">
+                    {{session['appellation']}}
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/userinfo"
+                           target="Content">个人中心</a>
+                    </dd>
+                    <dd><a href="/loginOut">退出登录</a>
+                    </dd>
+                </dl>
+
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item">
+                    <a href="https://www.bilibili.com/v/popular/all" target="Content">B站热门排行榜</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">用户中心</a>
+                    <dl class="layui-nav-child">
+                        {% if session['type'] == 1 %}
+                        <dd><a href="/userlist" target="Content">用户列表</a></dd>
+                        {% endif %}
+                        <dd><a href="/userinfo" target="Content">个人资料</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;">视频数据</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/videolist" target="Content">数据列表</a></dd>
+                        <dd><a href="/videopic1" target="Content">视频数据</a></dd>
+                        <dd><a href="/videopic2" target="Content">数据分析</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;">作者数据</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/authorlist" target="Content">数据列表</a></dd>
+                        <dd><a href="/authorpic1" target="Content">作者数据</a></dd>
+                        <dd><a href="/authorpic2" target="Content">数据分析</a></dd>
+                    </dl>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <!-- 内容主体区域 iframe   -->
+        <div style="padding: 0px;height: 100%;width: 100%;">
+            <iframe src="https://www.bilibili.com/v/popular/all" name="Content"
+                    style="border: 0px solid blue;height: 100%;width: 100%;scrolling:auto;">
+            </iframe>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        底部版权区域
+    </div>
+</div>
+
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>
